@@ -1,0 +1,68 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptransfer</title>
+    <link rel="stylesheet" href="~/css/stylelogin.css">
+</head>
+
+<!--Criando a estrutura do login-->
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method="post" enctype="multipart/form-data" asp-action="CadastrarTutor" asp-controller="Home">
+                <h1>Crie uma conta</h1>
+                <input name="nome" class="nome" type="text" placeholder="Nome" required />
+                <label for=""> Data de nascimento</label>
+                <input name="datanasc" type="date" id="datanascimento" class="datanascimento" placeholder="Data de nascimento" required />
+                <input name="telefone"type="number" id="telefone" class="telefone" placeholder="Telefone" required />
+                <input name="cpf" id="cpf" class="cpf" type="number" maxlength="11" placeholder="CPF" required />
+                <input name="cpfPCD" id="cpfPCD" class="cpfPCD" type="number" maxlength="11" placeholder="CPF do PCD" required />
+                <input name="documentoPCD" class="documentoPCD" type="text" placeholder="Certidão da Pessoa com Deficiência " required />
+                <input name="email" id="email" class="email" type="email" placeholder="Email" required />
+                <input name="senha" id="senha" class="senha" type="password" minlength="6" placeholder="Password" required />
+                <input name="arq" type="file"  class="arquivos" id="arquivos" accept="image/png, image/jpeg" required />
+                <button>Cadastrar</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form asp-action="LoginConta" asp-controller="Home" method="post">
+                <h1>Login</h1>
+                <input type="number"name="cpf" placeholder="CPF" required />
+                <input type="password" name="senha" placeholder="Senha" required />
+                <a href="#">Esqueceu a senha?</a>
+                <p>@TempData["estadoLogin"]</p>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Olá !!!</h1>
+                    <p>Introduza os seus dados pessoais e facilite gestão de suas finanças</p>
+                    <button class="ghost" id="signIn">Login</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Bem-vindo de volta</h1>
+                    <p>Quer se manter conectado conosco, faça login</p>
+                    <button class="ghost" id="signUp">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--Script que faz os alertas quando o cadastro é concluido, ou o login, ou outros-->
+<script>
+if ("@ViewBag.Alert" != null && "@ViewBag.Alert" != "") {
+window.alert("@ViewBag.Alert");
+ }
+</script>
+<script src="~/js/login.js"></script>

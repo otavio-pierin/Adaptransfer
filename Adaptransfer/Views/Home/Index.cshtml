@@ -1,0 +1,230 @@
+﻿@{
+    ViewData["Title"] = "Home Adaptransfer";
+}
+
+<body>
+
+    <!-- Constuindo o header  -->
+    <header>
+
+        <a href="#" class="logo"><span>Adapt</span>ransfer</a>
+
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar" class="fas fa-bars"></label>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#features">Serviços</a>
+            <a href="#about">Sobre</a>
+            <a href="#pricing">Planos</a>
+            <a href="#contact">Contato</a>
+            <a href="@ViewBag.Inicial">@Html.ActionLink("Login", "Login", "Home")</a>
+        </nav>
+
+    </header>
+
+    <!-- Construção da seção home  -->
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <h3>O primeiro aplicativo financeiro<span> assistivo</span></h3>
+            <p>Sistema bancário projetado para pessoas com deficiências intelectuais</p>
+            <a href="#" class="btn">Baixe agora</a>
+        </div>
+
+        <div class="image">
+            <img src ="~/img/home-img1.png" alt="">
+        </div>
+
+    </section>
+
+
+    <!--Construção da seção de serviços  -->
+
+    <section class="features" id="features">
+
+        <h1 class="heading"> Serviços oferecidos </h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="~/img/f-icon1.png" alt="">
+                <h3>Design adaptado</h3>
+                <p>Funcionalidades e curso de uso adaptado e mais intuitivo, projetado com base nas necessidades do público-alvo. </p>
+                <a href="#" class="btn">Saiba mais</a>
+            </div>
+
+            <div class="box">
+                <img src="~/img/f-icon2.png" alt="">
+                <h3>Segurança por biometria</h3>
+                <p>Ferramenta implementada no procedimento de transação para garantir maior segurança para o usuário</p>
+                <a href="#" class="btn">Saiba mais</a>
+            </div>
+
+            <div class="box">
+                <img src="~/img/f-icon3.png" alt="">
+                <h3>Dashboard de controle</h3>
+                <p>Aplicação para supervisão e gestão do tutor do PCD, garantindo uma segurança em 2 etapas</p>
+                <a href="#" class="btn">Saiba mais</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Construção da seção de sobre o app  -->
+
+    <section class="about" id="about">
+
+        <h1 class="heading"> Sobre o app </h1>
+
+        <div class="column">
+
+            <div class="image">
+                <img src="~/img/about-img.png" alt="">
+            </div>
+
+            <div class="content">
+                <h3>Aplicação ideial para gestão das suas finanças</h3>
+                <p>Adaptransfer replica um sistema bancário em ambiente virtual, porém com as funcionalidades e curso de uso adaptado e mais intuitivo, projetado com base nas necessidades e limitações do público-alvo. </p>
+                <p>A aplicação possui funcionalidades que permitem que o usuário realize ou receba transações de maneira segura, com validações de reconhecimento facial do remetente e confirmação de integridade por biometria. Além disso toda a interface pois botões e funcionalidades intuitivas para demandar o menor esforço cognitivo do usuário. Por fim todos os dados obtidos no uso do aplicativo são armazenados em banco de dados relacional e em nuvem, para garantir que os processos sejam otimizados, facilitando a experiência do usuário, e para assegurar proteção e segurança. </p>
+                <div class="buttons">
+                    <a href="#" class="btn"> <i class="fab fa-apple"></i> app store </a>
+                    <a href="#" class="btn"> <i class="fab fa-google-play"></i> google-play </a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Construção da seção de planos  -->
+
+    <section class="pricing" id="pricing">
+
+        <h1 class="heading"> Planos disponíveis </h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3 class="title">Tradicional</h3>
+                <div class="price">R$500<span>/mensal</span></div>
+                <ul>
+                    <li> <i class="fas fa-check"></i> Biometria </li>
+                    <li> <i class="fas fa-check"></i> Chatbot </li>
+                    <li> <i class="fas fa-check"></i> Atalho favoritos </li>
+                    <li> <i class="fas fa-times"></i> Reconhecimento facial </li>
+                </ul>
+                <a href="#" class="btn">Adquira agora</a>
+            </div>
+
+            <div class="box">
+                <h3 class="title">Básico</h3>
+                <div class="price">$Gratuito</div>
+                <ul>
+                    <li> <i class="fas fa-check"></i> Biometria </li>
+                    <li> <i class="fas fa-check"></i> Chatbot </li>
+                    <li> <i class="fas fa-times"></i> Atalho favoritos </li>
+                    <li> <i class="fas fa-times"></i> Reconhecimento facial </li>
+                </ul>
+                <a href="#" class="btn">Adquira agora</a>
+            </div>
+
+            <div class="box">
+                <h3 class="title">Premium</h3>
+                <div class="price">R$750<span>/mensal</span></div>
+                <ul>
+                    <li> <i class="fas fa-check"></i> Biometria </li>
+                    <li> <i class="fas fa-check"></i> Chatbot </li>
+                    <li> <i class="fas fa-check"></i> Atalho favoritos </li>
+                    <li> <i class="fas fa-check"></i> Reconhecimento facial </li>
+                </ul>
+                <a href="#" class="btn">Adquira agora</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!--Construção da seção de contato-->
+
+    <section id="contact">
+        <h1 class="heading">Contate-nos</h1>
+        <form action="https://api.staticforms.xyz/submit" method="post">
+            <h1>ENVIE UMA MENSAGEM</h1>
+            <br>
+            <input type="hidden" name="accessKey" value="c385639d-c453-4abd-98a6-400be02851bb">
+            <input type="hidden" name="redirectTo" value="https://localhost:44399/Home/Contact"
+            <input type="text" name="name" placeholder="Seu nome">
+            <input type="email" name="email" placeholder="Email">
+            <input type="text" name="subject" placeholder="Assunto">
+            <textarea name="message" id="" cols="30" rows="10" placeholder="Escreva aqui a mensagem"></textarea>
+
+            <a href="#" class="btn">Enviar mensagem</a>
+        </form>
+    </section>
+
+
+    <!-- Construção do footer  -->
+
+    <footer class="section-p1">
+        <div class="col">
+            <!--Criando cada coluna/divisão do footer-->
+
+            <h4>Contato</h4>
+            <p><strong>Endereço:</strong> Av. da Saudade, 125 - Pte. Preta, Campinas - SP, 13041-670</p>
+            <p><strong>Telefone:</strong> +55 (19)3731-2840</p>
+            <p><strong>Horário de funcionamento:</strong> 7h00 - 18h00, Segunda - Sábado</p>
+
+
+            <div class="follow">
+                <h4>Siga-nós nas redes sociais</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>Sobre</h4>
+            <a href="#">Sobre nós</a>
+            <a href="#">Segurança e proteção digital</a>
+            <a href="#">Política de privacidade</a>
+            <a href="#">Termos & Condições</a>
+            <a href="#">Contate-nos</a>
+        </div>
+
+        <div class="col">
+            <h4>Serviços</h4>
+            <a href="#">Biometria</a>
+            <a href="#">Chatbot</a>
+            <a href="#">Atalho favorito</a>
+            <a href="#">Reconhecimento facial</a>
+            <a href="#">Dashboard de controle</a>
+        </div>
+
+        <div class="col install">
+            <h4>Instale nosso App</h4>
+            <p>Disponível na App Store e Google Play</p>
+            <div class="row">
+                <img src="~/img/app.jpg" alt="">
+                <img src="~/img/play.jpg" alt="">
+            </div>
+            <p>Serviços de pagamento aceitos</p>
+            <img src="~/img/pay.png" alt="">
+        </div>
+
+        <div class="copyright">
+            <p>© 2023, Adaptransfer - Beatriz, Otávio, Pedro e Raissa</p>
+        </div>
+    </footer>
+
+</body>

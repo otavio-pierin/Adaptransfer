@@ -1,0 +1,367 @@
+﻿@model Adaptransfer.Models.LoginTutor
+@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- chamando a biblioteca de icons  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" />
+    <link rel="stylesheet" href="~/css/styleDashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Código da Sidebar -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="~/img/logo.png">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">person_outline</span>
+                    <h3>Perfil</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>Despesas</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">payments</span>
+                    <h3>Transações</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">mail_outline</span>
+                    <h3>Mensagens</h3>
+                    <span class="message-count">26</span>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>Investimentos</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">report_gmailerrorred</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Add Despesa</h3>
+                </a>
+                @if (Context.Session.GetString("user") != null)
+                {
+                    <a  asp-area="" asp-controller="Home" asp-action="Sair">
+                        <span class="material-icons-sharp">logout</span>
+                        <button class="buttonSair">Sair</button>
+                    </a>
+                }
+
+
+            </div>
+        </aside>
+        <!-- FIM DO SIDE BAR -->
+
+        <main>
+            <h1><span class="primary">ADAPTRANSFER</span></h1>
+            <div class="insights">
+                <!-- Código da seção de entradas (valores recebidos) -->
+                <div class="sales">
+                    <span class="material-icons-sharp">analytics</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Entradas</h3>
+                            @{
+                                string entradas = "";
+
+                                if (@ViewBag.Entradas != null) {
+                                    string valor = @ViewBag.Entradas.ToString().Trim();
+                                    entradas = valor.ToString();
+                                }
+                            }
+                        <h1>R$@ViewBag.Entradas.ToString().Trim()</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg class="svg">
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>19%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Último mês</small>
+                </div>
+                <!-- FIM DAS ENTRADAS -->
+                <!-- Código da seção de saídas (valores enviados) -->
+                <div class="expense">
+                    <span class="material-icons-sharp">bar_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Saídas</h3>
+                            @{
+                                string saidas = "";
+
+                                if (@ViewBag.Saidas != null) {
+                                    string valor = @ViewBag.Saidas.ToString().Trim();
+                                    saidas = valor.ToString();
+                                }
+                            }
+                        <h1>R$@ViewBag.Saidas.ToString().Trim()</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg class="svg">
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>81%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Último mês</small>
+                </div>
+                <!-- FIM DAS SAÍDAS -->
+                <!-- Código da seção de investimentos -->
+                <div class="income">
+                    <span class="material-icons-sharp">stacked_line_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Investimentos</h3>
+                            <h1>R$0,00</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg class="svg">
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>0%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Disponível na próxima atualização</small>
+                </div>
+                <!-- FIM DOS INVESTIMENTOS -->
+            </div>
+
+            <!-- Código da tabela de transações realizadas -->
+            <div class="recent-orders">
+                <h2>Transações recentes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome Usuário</th>
+                            <th>ID Usuário</th>
+                            <th>Valor</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (@ViewBag.Transacao != null) {
+                            foreach (Transacao i in ViewBag.Transacao) {
+                                <tr>
+                                    <td>@i.Nome</td>
+                                    <td>@i.IDusuario</td>
+                                    <td>@i.Valor</td>
+                                    <td>@i.Tipo</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <a href="#">Mostrar Tudo</a>
+            </div>
+        </main>
+
+        <!--FIM DO MAIN -->
+
+        <!-- Código da informações básicas do tutor -->
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="profile">
+                    <div class="info">
+                        @{
+                            string formato2 = "";
+
+                            if (Model.Nome != null) {
+                                string nome = Model.Nome.ToString().Trim();
+                                formato2 = nome.ToString();
+                            }
+                        }
+                        <p>Olá, <b name="nomeTutor">@formato2</b></p>
+                        <small class="text-muted">Tutor</small>
+                    </div>
+                    <div class="profile-photo">
+                        @{
+                            string formato = "";
+
+                            if (Model.BytesArquivo != null) {
+                                string fotoUsuario = Convert.ToBase64String(Model.BytesArquivo);
+                                formato = "data:image/png;base64," + fotoUsuario;
+                            }
+
+                        }
+                        <img name="imgTutor" src="@formato">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Código da seção de listagem de despesas -->
+            <div class="recent-updates">
+                <div class="sales-analytics1">
+                    <h2>Despesas</h2>
+                    <div class="item online1">
+                        <div class="icon">
+                            <span class="material-icons-sharp">payments</span>
+                        </div>
+                        <div class="right">
+                            <div class="info">
+                                <h3>SAÚDE</h3>
+                                <small class="text-muted">Last 24 Hours</small>
+                            </div>
+                            <h5 class="sucess">+39%</h5>
+                            <h3>3849</h3>
+                        </div>
+                    </div>
+                    <div class="item offline1">
+                        <div class="icon">
+                            <span class="material-icons-sharp">payments</span>
+                        </div>
+                        <div class="right">
+                            <div class="info">
+                                <h3>LAZER</h3>
+                                <small class="text-muted">Last 24 Hours</small>
+                            </div>
+                            <h5 class="danger">-17%</h5>
+                            <h3>1100</h3>
+                        </div>
+                    </div>
+                    <div class="item customers1">
+                        <div class="icon">
+                            <span class="material-icons-sharp">payments</span>
+                        </div>
+                        <div class="right">
+                            <div class="info">
+                                <h3>ALIMENTAÇÃO</h3>
+                                <small class="text-muted">Last 24 Hours</small>
+                            </div>
+                            <h5 class="sucess">+25%</h5>
+                            <h3>849</h3>
+                        </div>
+                    </div>
+
+                    <div class="item customers1">
+                        <div class="icon">
+                            <span class="material-icons-sharp">payments</span>
+                        </div>
+                        <div class="right">
+                            <div class="info">
+                                <h3>ALIMENTAÇÃO</h3>
+                                <small class="text-muted">Last 24 Hours</small>
+                            </div>
+                            <h5 class="danger">+25%</h5>
+                            <h3>849</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sales-analytics1">
+                    <div class="item online">
+                        <div class="icon">
+                            <span class="material-icons-sharp">payments</span>
+                        </div>
+                        <div class="right">
+                            <div class="info">
+                                <h3>SAÚDE</h3>
+                                <small class="text-muted">Last 24 Hours</small>
+                            </div>
+                            <h5 class="sucess">+39%</h5>
+                            <h3>3849</h3>
+                        </div>
+                    </div>
+                    <div class="item offline">
+                        <div class="icon">
+                            <span class="material-icons-sharp">payments</span>
+                        </div>
+                        <div class="right">
+                            <div class="info">
+                                <h3>LAZER</h3>
+                                <small class="text-muted">Last 24 Hours</small>
+                            </div>
+                            <h5 class="danger">-17%</h5>
+                            <h3>1100</h3>
+                        </div>
+                    </div>
+                    <div class="item customers">
+                        <div class="icon">
+                            <span class="material-icons-sharp">payments</span>
+                        </div>
+                        <div class="right">
+                            <div class="info">
+                                <h3>ALIMENTAÇÃO</h3>
+                                <small class="text-muted">Last 24 Hours</small>
+                            </div>
+                            <h5 class="sucess">+25%</h5>
+                            <h3>849</h3>
+                        </div>
+                    </div>
+                    <!-- fim da listagem de despesas -->
+                    
+                    <div class="item add-product">
+                        <div class="box">
+                            <a href="#divOne" class="button">Add despesas</a>
+                        </div>
+                        <!-- Código do pop-up de cadastro de despesas -->
+                        <div class="overlay" id="divOne">
+                            <div class="wrapper">
+                                <a href="#" class="close">&times;</a>
+                                <div class="content">
+                                    <div class="container">
+                                        <form method="post" enctype="multipart/form-data" asp-action="CadastrarDespesa" asp-controller="Home">
+                                            <h2>Cadastrar Despesa</h2>
+                                            <label>ID Usuário</label>
+                                            <input name="idConta" type="number">
+                                            <label>Instituição a ser paga</label>
+                                            <input name="nomeInstituicao" type="text">
+                                            <label>Valor</label>
+                                            <input name="valor" type="number">
+                                            <label>Categoria</label>
+                                            <input name="categoria" type="text">
+                                            <label>Data de vencimento</label>
+                                            <input name="datavenc" type="date">
+                                            <button class="buttonform">Cadastrar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fim do código do pop-up -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chamando os scripts que são usados -->
+        <script src="~/js/dashboard.js"></script>
+</body>
+
+</html>
+
+
